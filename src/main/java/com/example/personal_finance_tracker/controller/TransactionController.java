@@ -21,5 +21,11 @@ public class TransactionController {
         return ResponseEntity.ok(transaction);
     }
 
+    @GetMapping
+    public ResponseEntity<List<Transaction>> getAllTransactions() {
+        return ResponseEntity.ok(transactions);
+    }
+
+
 
 }
