@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/transactions")
@@ -63,5 +64,11 @@ public class TransactionController {
         return ResponseEntity.ok(transaction);
     }
 
-
+    @GetMapping(params = "type")
+    public ResponseEntity<List<Transaction>> getTransactionsByType(@RequestParam String type) {
+        List<Transaction> filteredTransactions = transactions.stream()
+                .filter(t -> t.getType().equalsIgnoreCase(type))
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(filteredTransactions);
+    }
 }
