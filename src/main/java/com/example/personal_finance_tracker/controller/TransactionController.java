@@ -35,5 +35,18 @@ public class TransactionController {
         return ResponseEntity.ok(transaction);
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Transaction> deleteTransaction(@PathVariable Long id) {
+        Transaction transaction = transactions.stream()
+                .filter(t -> t.getId().equals(id))
+                .findFirst()
+                .orElse(null);
+        if (transaction == null) {
+            return ResponseEntity.notFound().build();
+        }
+        transactions.remove(transaction);
+        return ResponseEntity.ok(transaction);
+    }
+
 
 }
