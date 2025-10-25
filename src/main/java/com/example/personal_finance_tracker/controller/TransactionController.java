@@ -35,6 +35,21 @@ public class TransactionController {
         return ResponseEntity.ok(transaction);
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<Transaction> updateTransaction(@PathVariable Long id, @RequestBody Transaction transaction) {
+        Transaction existingTransaction = transactions.stream()
+                .filter(t -> t.getId().equals(id))
+                .findFirst()
+                .orElse(null);
+        if (existingTransaction == null) {
+            return ResponseEntity.notFound().build();
+        }
+        existingTransaction.setDescription(transaction.getDescription());
+        existingTransaction.setAmount(transaction.getAmount());
+        existingTransaction.setType(transaction.getType());
+        return ResponseEntity.ok(existingTransaction);
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Transaction> deleteTransaction(@PathVariable Long id) {
         Transaction transaction = transactions.stream()
