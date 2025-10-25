@@ -62,7 +62,7 @@ transaction-api/
 
 ### 1️⃣ Clone the Repository
 ```bash
-git clone https://github.com/nNEWBE/personal_finance_tracker_api.git
+git clone https://github.com/nNEWBE/personal-finance-tracker-api.git
 cd personal-finance-tracker-api
 ````
 
